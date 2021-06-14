@@ -3,26 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pasien extends CI_Controller {
 
-    public function list(){
-        $this->load->model('pasien_model');// load model
-        return $data['pasien'] = $this->pasien_model->getAll();// query
-
-        $this->load->view('header');
-        $this->load->view('pasien/list',$data);
-        $this->load->view('footer');
-    }
-
-    public function view($id){
-        $this->load->model('pasien_model');
-        $data['pasien']=$this->pasien_model->findById($id);
-        $this->load->view('header');
-        $this->load->view('pasien/view',$data);
-        $this->load->view('footer');
-    }
-
-    public function ambil_data(){
-        return $this->db->get('dbpoli');
-    }
     
     public function index(){
         
@@ -56,4 +36,22 @@ class Pasien extends CI_Controller {
             $this->load->view('footer');
 	}
     
+    public function list(){
+        $this->load->model('pasien_model');// load model
+        $data['pasien'] = $this->pasien_model->getAll();// query
+
+        $this->load->view('header');
+        $this->load->view('pasien/list',$data);
+        $this->load->view('footer');
+    }
+
+    public function view($id){
+        $this->load->model('pasien_model');
+        $data['pasien']=$this->pasien_model->findById($id);
+        
+        $this->load->view('header');
+        $this->load->view('pasien/view',$data);
+        $this->load->view('footer');
+    }
+
 }
